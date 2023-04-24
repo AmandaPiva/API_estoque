@@ -1,6 +1,6 @@
 const config = require("../database/config");
-const helper = require("../helper");
-const db = require("../controllers/db");
+const helper = require("../../helper");
+const db = require("../../entity-produto/controllers/db");
 
 async function get(page=1){ //http://localhost:4000/produto/?page=1 nossa URL 
     const offset = helper.getOffset(page, config.listPerPage);

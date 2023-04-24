@@ -1,5 +1,5 @@
 const express = require('express');
-const produtoRouter = require('./routes/produto-router');
+const produtoRouter = require('./entity-produto/routes/produto-router');
 
 const app = express();
 const port = 4000;
