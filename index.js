@@ -1,5 +1,6 @@
 const express = require('express');
-const produtoRouter = require('./entity-produto/routes/produto-router');
+const produtoRouter = require('./modules/entity-produto/routes/produto-router');
+const localizacaoRouter = require('./modules/entity-localizacao/routes/localizacao-router');
 
 const app = express();
 const port = 4000;
@@ -13,6 +14,7 @@ app.get('/', (req, res) => {
 });
 
 app.use("/produto", produtoRouter);
+app.use("/localizacao", localizacaoRouter);
 
 
 app.listen(port, () => {

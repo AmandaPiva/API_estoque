@@ -1,5 +1,5 @@
 const express = require("express");
-const produtoController = require("../../entity-produto/controllers/produto-controller");
+const produtoController = require("../controllers/produto-controller");
 const router = express.Router();
 
 router.get('/', async function(req, res, next){

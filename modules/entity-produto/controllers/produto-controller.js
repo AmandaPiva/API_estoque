@@ -1,13 +1,12 @@
-const config = require("../database/config");
-const helper = require("../../helper");
-const db = require("../../entity-produto/controllers/db");
+const config = require("../../../shared/config");
+const helper = require("../../../helper");
+const db = require("../../../shared/db");
 
 async function get(page=1){ //http://localhost:4000/produto/?page=1 nossa URL 
     const offset = helper.getOffset(page, config.listPerPage);
     const rows = await db.query(
         `SELECT id, nome, tipo, fornecedor, dataFabricacao FROM produto LIMIT ${offset}, ${config.listPerPage}`
         );
-        console.log(rows)
 
     const data = helper.emptyOrRows(rows);
     const meta ={page};
