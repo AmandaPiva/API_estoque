@@ -21,7 +21,6 @@ router.post('/', async function(req, res, next){
 });
 
 router.put('/:id', async function(req, res, next){
-
     try{
         res.json(await produtoController.update(req.params.id, req.body));
     }catch(err){
