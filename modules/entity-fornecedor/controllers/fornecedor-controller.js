@@ -5,7 +5,7 @@ const db = require("../../../shared/db");
 async function get(page=1){
     const offset = helper.getOffset(page, config.listPerPage);
     const rows = await db.query(
-        `SELECT id_fabricante, nome, email, telefone FROM fabricante LIMIT ${offset}, ${config.listPerPage}`
+        `SELECT id, nome, endereco, telefone, email FROM fornecedor LIMIT ${offset}, ${config.listPerPage}`
     );
 
     const data = helper.emptyOrRows(rows);
@@ -17,29 +17,29 @@ async function get(page=1){
     }
 }
 
-async function create(fabricante){
+async function create(fornecedor){
     const insert = await db.query(
-        `INSERT INTO fabricante (nome, email, telefone) VALUES ('${fabricante.nome}', '${fabricante.email}', '${fabricante.telefone}')`
+        `INSERT INTO fornecedor (nome, endereco, telefone, email) VALUES ('${fornecedor.nome}', '${fornecedor.endereco}', '${fornecedor.telefone}', '${fornecedor.email}')`
     );
 
-    let message = "Erro ao criar um novo produto";
+    let message = "Erro ao criar um novo fornecedor";
 
     if(insert.affectedRows){
-        message = "Produto inserido com sucesso";
+        message = "Fornecedor inserido com sucesso";
     }
 
     return {message};
 }
 
-async function update(id_fabricante, fabricante){
+async function update(id, fornecedor){
     const update = await db.query(
-        `UPDATE fabricante SET nome="${fabricante.nome}", email="${fabricante.email}", telefone="${fabricante.telefone}" WHERE id_fabricante=${id_fabricante}`
+        `UPDATE fornecedor SET nome="${fornecedor.nome}", endereco="${fornecedor.endereco}", telefone="${fornecedor.telefone}", email="${fornecedor.email}" WHERE id=${id}`
     )
 
-    let message = "Erro ao atualizar um fabricante";
+    let message = "Erro ao atualizar um fornecedor";
 
     if(update.affectedRows){
-        message = "Fabricante alterado com sucesso";
+        message = "Fornecedor alterado com sucesso";
     }
 
     return {message};

@@ -29,5 +29,4 @@ router.put('/:id_fabricante', async function(req, res, next){
     }
 })
 
-
 module.exports = router;

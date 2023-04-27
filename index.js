@@ -2,6 +2,7 @@ const express = require('express');
 const produtoRouter = require('./modules/entity-produto/routes/produto-router');
 const localizacaoRouter = require('./modules/entity-localizacao/routes/localizacao-router');
 const fabricanteRouter = require('./modules/entity-fabricante/routes/fabricante-router');
+const fornecedorRouter = require('./modules/entity-fornecedor/routes/fornecedor-router');
 
 const app = express();
 const port = 4000;
@@ -17,6 +18,7 @@ app.get('/', (req, res) => {
 app.use("/produto", produtoRouter);
 app.use("/localizacao", localizacaoRouter);
 app.use("/fabricante", fabricanteRouter);
+app.use("/fornecedor", fornecedorRouter);
 
 
 app.listen(port, () => {
