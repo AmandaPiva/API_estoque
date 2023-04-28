@@ -19,7 +19,7 @@ async function get(page=1){
 
 async function create(pedido){
     const insert = await db.query(
-        `INSERT INTO pedido (numPedido, dataPedido, dataEntrega, statusPedido) VALUES ('${pedido.numPedido}', '${pedido.dataPedido}', '${pedido.dataEntrega}', '${pedido.statusPedido}')`
+        `INSERT INTO pedido (numPedido, dataPedido, dataEntrega, statusPedido) VALUES ("${pedido.numPedido}", "${pedido.dataPedido}", "${pedido.dataEntrega}", "${pedido.statusPedido}")`
     );
 
     let message = "Erro ao criar um novo pedido";
@@ -29,4 +29,40 @@ async function create(pedido){
     }
 
     return {message};
+}
+
+async function update(id, pedido){
+    const update = await db.query(
+        `UPDATE pedido SET numPedido="${pedido.numPedido}", dataPedido="${pedido.dataPedido}", dataEntrega="${pedido.dataEntrega}", statusPedido="${pedido.statusPedido}" WHERE id=${id}`
+    );
+
+    let message = "Erro ao atualizar um pedido";
+
+    if(update.affectedRows){
+        message = "Pedido atualizado com sucesso";
+    }
+
+    return {message};
+
+}
+
+async function remove(id){
+    const remove = await db.query(
+        `DELETE FROM pedido WHERE id=${id}`
+    );
+
+    let message = "Erro ao deletar um pedido";
+
+    if(remove.affectedRows){
+        message = "Pedido removido com sucesso";
+    }
+
+    return {message};
+}
+
+module.exports ={
+    get,
+    create,
+    update,
+    remove
 }
